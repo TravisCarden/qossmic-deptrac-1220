@@ -1,0 +1,23 @@
+{
+    "name": "traviscarden/qossmic-deptrac-1220",
+    "require": {
+        "php": "~8.1"
+    },
+    "require-dev": {
+        "qossmic/deptrac-shim": "^1.0",
+        "squizlabs/php_codesniffer": "^3.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "QossmicDeptrac1220\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "QossmicDeptrac1220\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "deptrac": "deptrac"
+    }
+}

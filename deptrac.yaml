@@ -1,0 +1,43 @@
+deptrac:
+
+  paths:
+    - ./src
+    - ./tests
+    - ./vendor
+
+  layers:
+    -
+      name: Domain
+      collectors:
+        - type: directory
+          value: '%currentWorkingDirectory%/src/Domain/.*'
+    -
+      name: Infrastructure
+      collectors:
+        - type: directory
+          value: '%currentWorkingDirectory%/src/Infrastructure/.*'
+    -
+      name: Tests
+      collectors:
+        - type: directory
+          value: '%currentWorkingDirectory%/tests/.*'
+    -
+      name: Vendor
+      collectors:
+        - type: directory
+          value: '%currentWorkingDirectory%/vendor/.*'
+
+  ruleset:
+
+    Domain: ~
+
+    Infrastructure:
+      - Domain
+      - Vendor
+
+    Tests:
+      - Domain
+      - Infrastructure
+      - Vendor
+
+    Vendor: ~
