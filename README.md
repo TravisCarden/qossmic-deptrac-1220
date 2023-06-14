@@ -2,8 +2,6 @@
 
 This repository is an attempt to reproduce the issue from https://github.com/qossmic/deptrac/issues/1220.
 
-It fails to reproduce it, i.e., it produces the expected result, not the problem reported in the issue.
-
 ## Setup
 
 ```shell
@@ -100,46 +98,50 @@ deptrac:
 ## Results
 
 ```shell
-$ ./vendor/bin/deptrac
- 1423/1423 [▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓] 100%
+$ php vendor/qossmic/deptrac/deptrac.php
+ 2437/2437 [▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓] 100%
 
- ----------- ---------------------------------------------------------------------------------------------------------------------------------------------
-  Reason      Infrastructure
- ----------- ---------------------------------------------------------------------------------------------------------------------------------------------
-  Violation   QossmicDeptrac1220\Infrastructure\Bad_DependOnTest must not depend on QossmicDeptrac1220\Tests\_TestClass (Tests)
-              /var/www/qossmic-deptrac-1220/src/Infrastructure/Bad_DependOnTest.php:11
-  Violation   QossmicDeptrac1220\Infrastructure\Bad_DependOnTest must not depend on QossmicDeptrac1220\Tests\_TestClass (Tests)
-              /var/www/qossmic-deptrac-1220/src/Infrastructure/Bad_DependOnTest.php:5
- ----------- ---------------------------------------------------------------------------------------------------------------------------------------------
+ -------------------------- -----------------------------------------------------------------------------------------------------------
+  Reason                     Infrastructure
+ -------------------------- -----------------------------------------------------------------------------------------------------------
+  DependsOnDisallowedLayer   QossmicDeptrac1220\Infrastructure\Bad_DependOnTest must not depend on QossmicDeptrac1220\Tests\_TestClass
+                             You are depending on token that is a part of a layer that you are not allowed to depend on. (Tests)
+                             /Users/traviscarden/Projects/other/qossmic-deptrac-1220/src/Infrastructure/Bad_DependOnTest.php:12
+ -------------------------- -----------------------------------------------------------------------------------------------------------
 
- ----------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  Reason      Domain
- ----------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  Violation   QossmicDeptrac1220\Domain\Bad_DependOnVendor must not depend on PHPUnit\Event\Runtime\PHPUnit (Vendor)
-              /var/www/qossmic-deptrac-1220/src/Domain/Bad_DependOnVendor.php:11
-  Violation   QossmicDeptrac1220\Domain\Bad_DependOnVendor must not depend on PHPUnit\Event\Runtime\PHPUnit (Vendor)
-              /var/www/qossmic-deptrac-1220/src/Domain/Bad_DependOnVendor.php:5
-  Violation   QossmicDeptrac1220\Domain\Bad_DependOnInfrastructure must not depend on QossmicDeptrac1220\Infrastructure\_InfrastructureClass (Infrastructure)
-              /var/www/qossmic-deptrac-1220/src/Domain/Bad_DependOnInfrastructure.php:11
-  Violation   QossmicDeptrac1220\Domain\Bad_DependOnInfrastructure must not depend on QossmicDeptrac1220\Infrastructure\_InfrastructureClass (Infrastructure)
-              /var/www/qossmic-deptrac-1220/src/Domain/Bad_DependOnInfrastructure.php:5
-  Violation   QossmicDeptrac1220\Domain\Bad_DependOnTest must not depend on QossmicDeptrac1220\Tests\_TestClass (Tests)
-              /var/www/qossmic-deptrac-1220/src/Domain/Bad_DependOnTest.php:11
-  Violation   QossmicDeptrac1220\Domain\Bad_DependOnTest must not depend on QossmicDeptrac1220\Tests\_TestClass (Tests)
-              /var/www/qossmic-deptrac-1220/src/Domain/Bad_DependOnTest.php:5
- ----------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ -------------------------- --------------------------------------------------------------------------------------------------------------------------------
+  Reason                     Domain
+ -------------------------- --------------------------------------------------------------------------------------------------------------------------------
+  DependsOnDisallowedLayer   QossmicDeptrac1220\Domain\Bad_DependOnVendor must not depend on PHP_CodeSniffer\Runner
+                             You are depending on token that is a part of a layer that you are not allowed to depend on. (Vendor)
+                             /Users/traviscarden/Projects/other/qossmic-deptrac-1220/src/Domain/Bad_DependOnVendor.php:11
+  DependsOnDisallowedLayer   QossmicDeptrac1220\Domain\Bad_DependOnInfrastructure must not depend on QossmicDeptrac1220\Infrastructure\_InfrastructureClass
+                             You are depending on token that is a part of a layer that you are not allowed to depend on. (Infrastructure)
+                             /Users/traviscarden/Projects/other/qossmic-deptrac-1220/src/Domain/Bad_DependOnInfrastructure.php:11
+  DependsOnDisallowedLayer   QossmicDeptrac1220\Domain\Bad_DependOnTest must not depend on QossmicDeptrac1220\Tests\_TestClass
+                             You are depending on token that is a part of a layer that you are not allowed to depend on. (Tests)
+                             /Users/traviscarden/Projects/other/qossmic-deptrac-1220/src/Domain/Bad_DependOnTest.php:11
+ -------------------------- --------------------------------------------------------------------------------------------------------------------------------
+
+ ------------------------ --------------------------------------------------------------------------------------------------------------------------------
+  Reason                   Tests
+ ------------------------ --------------------------------------------------------------------------------------------------------------------------------
+  DependsOnInternalToken   QossmicDeptrac1220\Tests\Good_DependOnInfrastructure must not depend on QossmicDeptrac1220\Infrastructure\_InfrastructureClass
+                           You are depending on a token that is internal to the layer and you are not part of that layer. (Infrastructure)
+                           /Users/traviscarden/Projects/other/qossmic-deptrac-1220/tests/Good_DependOnInfrastructure.php:11
+ ------------------------ --------------------------------------------------------------------------------------------------------------------------------
 
 
- -------------------- -----
+ -------------------- ------
   Report
- -------------------- -----
-  Violations           8
+ -------------------- ------
+  Violations           5
   Skipped violations   0
-  Uncovered            15
-  Allowed              10
+  Uncovered            2601
+  Allowed              4
   Warnings             0
   Errors               0
- -------------------- -----
+ -------------------- ------
 ```
 
 ## Debug
