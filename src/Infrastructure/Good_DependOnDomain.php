@@ -4,6 +4,7 @@ namespace QossmicDeptrac1220\Infrastructure;
 
 use QossmicDeptrac1220\Domain\_DomainClass;
 
+/** @internal */
 final class Good_DependOnDomain
 {
     public function call(): string

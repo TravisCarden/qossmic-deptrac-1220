@@ -4,6 +4,7 @@ namespace QossmicDeptrac1220\Infrastructure;
 
 use QossmicDeptrac1220\Tests\_TestClass;
 
+/** @internal */
 final class Bad_DependOnTest
 {
     public function call(): string

@@ -4,6 +4,7 @@ namespace QossmicDeptrac1220\Infrastructure;
 
 use \PHP_CodeSniffer\Runner as _VendorClass;
 
+/** @internal */
 final class Good_DependOnVendor
 {
     public function call(): string

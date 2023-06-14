@@ -2,6 +2,7 @@
 
 namespace QossmicDeptrac1220\Infrastructure;
 
+/** @internal */
 final class Good_DependOnInfrastructure
 {
     public function call(): string
